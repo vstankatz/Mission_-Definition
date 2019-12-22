@@ -1,13 +1,14 @@
 class Define
-  attr_reader :name, :id, :length
+  attr_reader :type, :name, :id, :word_id
 
   @@meaning_list = {}
   @@rows = 0
 
   def initialize(attributes)
     @type = attributes.fetch(:type)
-    @name = attributes.fetch(:name).downcase.capitalize!
+    @name = attributes.fetch(:name).downcase
     @id = attributes.fetch(:id) || @@rows += 1
+    @word_id = attributes.fetch(:word_id)
   end
 
   def self.all
@@ -15,25 +16,26 @@ class Define
   end
 
   def save
-    @@meaning_list[self.id] = Word.new({:type => self.type, :name => self.name, :id => self.id})
+    @@meaning_list[self.id] = Define.new({:type => self.type, :name => self.name, :id => self.id, :word_id => self.word_id})
   end
 
   def self.clear
     @@meaning_list = {}
   end
 
-  def ==(word_to_compare)
-    self.name.downcase.eql?(word_to_compare.name.downcase)
+  def ==(definition_to_compare)
+    self.name.downcase.eql?(definition_to_compare.name.downcase)
   end
 
   def self.find(def_id)
     @@meaning_list[def_id]
   end
 
-  def update(name)
-    @name = name.downcase.capitalize!
-    @type = type
-    @@meaning_list[self.id] = Word.new({:type => @type, :name => @name, :id => self.id})
+  def update(input)
+    puts input
+    @type = input.fetch(:type)
+    @name = input.fetch(:name)
+    @@meaning_list[self.id] = Define.new({:type => @type, :name => @name, :id => self.id, :word_id => self.word_id})
   end
 
   def delete
