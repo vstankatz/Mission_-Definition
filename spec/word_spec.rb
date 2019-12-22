@@ -9,8 +9,9 @@ describe '#Word' do
 
   describe('#save') do
     it('saves the word') do
-      word1 = Word.new("Heart", nil)
+      word1 = Word.new("heart", nil)
       word1.save
+      expect(word1.name).to(eq("Heart"))
       expect(Word.all).to(eq([word1]))
     end
   end
@@ -72,7 +73,7 @@ describe '#Word' do
     it('should update the word') do
       word = Word.new("Home", nil)
       word.save
-      word.update("Kansas", nil)
+      word.update("kansas")
       expect(word.name).to(eq('Kansas'))
     end
   end
