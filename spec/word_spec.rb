@@ -7,6 +7,14 @@ describe '#Word' do
     Word.clear
   end
 
+  describe('#save') do
+    it('saves the word') do
+      word1 = Word.new("Heart", nil)
+      word1.save
+      expect(Word.all).to(eq([word1]))
+    end
+  end
+
   describe('.all') do
     it('shows all the words') do
       word1 = Word.new("Courage", nil)
@@ -20,4 +28,6 @@ describe '#Word' do
       expect(Word.all).to(eq([word1, word2, word3, word4]))
     end
   end
+
+
 end
