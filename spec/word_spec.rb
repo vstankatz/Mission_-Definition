@@ -9,7 +9,7 @@ describe '#Word' do
 
   describe('#save') do
     it('saves the word') do
-      word1 = Word.new("heart", nil)
+      word1 = Word.new({"heart", nil})
       word1.save
       expect(word1.name).to(eq("Heart"))
       expect(Word.all).to(eq([word1]))
@@ -18,9 +18,9 @@ describe '#Word' do
 
   describe('.all') do
     it('shows all the words') do
-      word1 = Word.new("Courage", nil)
+      word1 = Word.new({"Courage", nil})
       word1.save
-      word2 = Word.new("Heart", nil)
+      word2 = Word.new({"Heart", nil})
       word2.save
       word3 = Word.new("Brain", nil)
       word3.save
@@ -75,6 +75,31 @@ describe '#Word' do
       word.save
       word.update("kansas")
       expect(word.name).to(eq('Kansas'))
+    end
+  end
+
+  describe('#delete') do
+    it('should delete the chosen word') do
+      word1 = Word.new("Heart", nil)
+      word1.save
+      word2 = Word.new("Home", nil)
+      word2.save
+      word1.delete
+      expect(Word.all).to(eq([word2]))
+    end
+  end
+
+  describe('search') do
+    it('should search for words based on the name') do
+    word1 = Word.new("Courage", nil)
+    word1.save
+    word2 = Word.new("Heart", nil)
+    word2.save
+    word3 = Word.new("Brain", nil)
+    word3.save
+    word4 = Word.new("Home", nil)
+    word4.save
+    expect(Word.search("home")).to(eq([word4]))
     end
   end
 
