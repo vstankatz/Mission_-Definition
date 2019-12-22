@@ -1,13 +1,13 @@
 class Word
-  attr_reader :name, :id
+  attr_reader :name, :id, :length
 
   @@word_list = {}
   @@word_rows = 0
 
   def initialize(attributes)
-    @name = attributes.fetch.(:name).downcase.capitalize!
-    @id = attributes.fetch.(:id) || @@word_rows += 1
-    @length = attributes.fetch.(:name).split("").length
+    @name = attributes.fetch(:name).downcase.capitalize!
+    @id = attributes.fetch(:id) || @@word_rows += 1
+    @length = attributes.fetch(:name).split("").length
   end
 
   def self.all
@@ -15,7 +15,7 @@ class Word
   end
 
   def save
-    @@word_list[self.id] = Word.new(self.name, self.id)
+    @@word_list[self.id] = Word.new({:name => self.name, :id => self.id})
   end
 
   def self.clear
@@ -32,7 +32,7 @@ class Word
 
   def update(name)
     @name = name.downcase.capitalize!
-    @@word_list[self.id] = Word.new(@name, self.id)
+    @@word_list[self.id] = Word.new({:name => @name, :id => self.id})
   end
 
   def delete
