@@ -29,5 +29,53 @@ describe '#Word' do
     end
   end
 
+  describe('.clear') do
+    it('clears the word_list') do
+      word1 = Word.new("Courage", nil)
+      word1.save
+      word2 = Word.new("Heart", nil)
+      word2.save
+      word3 = Word.new("Brain", nil)
+      word3.save
+      word4 = Word.new("Home", nil)
+      word4.save
+      Word.clear
+      expect(Word.all). to(eq([]))
+    end
+  end
+
+  describe('#==') do
+    it('should be the same word if spelled the same') do
+      word1 = Word.new("Brain", nil)
+      word1.save
+      word2 = Word.new("Brain", nil)
+      word2.save
+      expect(word1).to(eq(word2))
+    end
+  end
+
+  describe('.find') do
+    it('should find the word by the id') do
+      word1 = Word.new("Courage", nil)
+      word1.save
+      word2 = Word.new("Heart", nil)
+      word2.save
+      word3 = Word.new("Brain", nil)
+      word3.save
+      word4 = Word.new("Home", nil)
+      word4.save
+      expect(Word.find(word2.id)).to(eq(word2))
+    end
+  end
+
+  describe('#update') do
+    it('should update the word') do
+      word = Word.new("Home", nil)
+      word.save
+      word.update("Kansas", nil)
+      expect(word.name).to(eq('Kansas'))
+    end
+  end
+
 
 end
