@@ -42,7 +42,7 @@ class Word
   def self.search(name)
     return_array = @@word_list.values.select { |word| word.name.downcase.include? name.downcase }
     if return_array == []
-
+      return "No results found for your search"
     else
       return_array.sort_by { |word| [word.length, word.name] }
     end
