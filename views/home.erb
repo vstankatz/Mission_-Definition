@@ -1,0 +1,15 @@
+<h3>Welcome to Mission Definition, your one stop shop to make learning fun!</h3><br>
+<h3>To begin start adding words you'd like to learn or make up some of your own! When you hear those words being used or see them makeup a definition of what you think the word could mean.</h3>
+<h4><i>If you made up the words yourself have fun using your imagination to make definitions and then share your list with friends to make a secret language dictionary.</i></h4><br>
+
+<% if @words.any? %>
+  <ul>
+    <% @words.sort_by(&:name).each do |word| %>
+    <li><a href="/LOTR_Fest/<%= word.id %>"><%= word.name %></a></li>
+    <% end %>
+  </ul>
+  <% else %>
+  <p>There are currently no words to display.</p>
+  <% end %>
+
+<a href="/Home_Page/new_word">Add a New Word!</a>

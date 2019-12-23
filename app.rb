@@ -10,3 +10,7 @@ get('/') do
   @words = Word.all
   erb(:home)
 end
+
+get('/Home_Page/new_word') do
+  erb(:new_word)
+end
