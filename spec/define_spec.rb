@@ -71,20 +71,28 @@ describe('#Define') do
       end
     end
 
-    # describe('#delete') do
-    #   it('should delete the chosen definition') do
-    #
-    #     word1.delete
-    #     expect(Define.all).to(eq([word2]))
-    #   end
-    # end
-    #
-    # describe('search') do
-    #   it('should search for definitions in a word based on the words attribute') do
-    #
-    #   expect(Define.search("home")).to(eq([word4]))
-    #   end
-    # end
-    #
+    describe('#delete') do
+      it('should delete the chosen definition') do
+        def1 = Define.new({:type => "Noun", :name => "the ability to do something that frightens one.", :id => nil, :word_id => @word.id})
+        def1.save
+        def2 = Define.new({:type => "Noun", :name => "strength in the face of pain or grief.", :id => nil, :word_id => @word.id})
+        def2.save
+        def1.delete
+        expect(Define.all).to(eq([def2]))
+      end
+    end
+
+    describe('search') do
+      it('should search for definitions in a word based on the words attribute') do
+        def1 = Define.new({:type => "Noun", :name => "the ability to do something that frightens one.", :id => nil, :word_id => @word.id})
+        def1.save
+        def2 = Define.new({:type => "Noun", :name => "strength in the face of pain or grief.", :id => nil, :word_id => @word.id})
+        def2.save
+        def3 = Define.new({:type => "Verb", :name => "fighting through fear.", :id => nil, :word_id => @word.id})
+        def3.save
+      expect(Define.search("Noun")).to(eq([def2, def1]))
+      end
+    end
+
 
 end
