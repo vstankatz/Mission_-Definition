@@ -6,7 +6,7 @@ class Word
 
   def initialize(attributes)
     @name = attributes.fetch(:name).downcase.capitalize!
-    @id = attributes.fetch(:id) || @@word_rows += 1
+    @id = (attributes.fetch(:id)) || (@@word_rows += 1)
     @length = attributes.fetch(:name).split("").length
   end
 

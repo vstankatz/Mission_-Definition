@@ -5,11 +5,11 @@
 <% if @words.any? %>
   <ul>
     <% @words.sort_by(&:name).each do |word| %>
-    <li><a href="/LOTR_Fest/<%= word.id %>"><%= word.name %></a></li>
+    <li><a href="/home_page/<%= word.id %>"><%= word.name %></a></li>
     <% end %>
   </ul>
   <% else %>
   <p>There are currently no words to display.</p>
   <% end %>
 
-<a href="/Home_Page/new_word">Add a New Word!</a>
+<a href="/home_page/new_word">Add a New Word!</a>

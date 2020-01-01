@@ -32,7 +32,6 @@ class Define
   end
 
   def update(input)
-    puts input
     @type = input.fetch(:type)
     @name = input.fetch(:name)
     @@meaning_list[self.id] = Define.new({:type => @type, :name => @name, :id => self.id, :word_id => self.word_id})

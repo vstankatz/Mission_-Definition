@@ -1,0 +1,17 @@
+<h2><%= @word.name %></h2>
+
+<% if @definitions.any? %>
+<ul>
+  <% @definitions.sort_by(&:type).each do |definition| %>
+  <li><a href="/home_page/<%= definition.id %>"><%= definition.name %></a></li>
+  <% end %>
+</ul>
+<% else %>
+<p>There are currently no definitions to display.</p>
+<% end %>
+
+<a href="/home_page/<%= @word.id %>/edit">Edit Word</a>
+<br>
+<a href="/home_page/<%= @word.id %>/define">Add a Definition</a>
+<br>
+<a href="/home_page">Back to Home</a>

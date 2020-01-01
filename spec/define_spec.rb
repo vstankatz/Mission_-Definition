@@ -65,7 +65,6 @@ describe('#Define') do
       it('should update the definition') do
         def1 = Define.new({:type => "Noun", :name => "the ability to do something that frightens one. strength in the face of pain or grief.", :id => nil, :word_id => @word.id})
         def1.save
-        # puts def1.name
         def1.update({:type => "Verb", :name => def1.name})
         expect(def1.type).to(eq('Verb'))
       end
