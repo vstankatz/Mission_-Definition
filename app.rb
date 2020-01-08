@@ -63,6 +63,39 @@ end
 
 get('/home_page/:word_id/define') do
   @word = Word.find(params[:word_id].to_i)
-
+  @definitions = Define.find(params[:def_id].to_i)
   erb(:new_def)
+end
+
+post('/home_page/:id_word') do
+  @word = Word.find(params[:id_word].to_i)
+  new_def = params[:def]
+  type = (params[:t].to_s)
+  definitions = Define.all
+  meaning = Define.new({:type => type, :name => new_def, :id => nil, :word_id => @word.id})
+  definitions.each do |d|
+    if meaning == d
+      meaning.delete
+      redirect to('/home_page')
+    elsif new_def == "" || type == ""
+      meaning.delete
+      erb(:new_def)
+    else
+      next
+    end
+  end
+  meaning.save
+@definitions = Define.all
+erb(:view_word)
+end
+
+
+patch('/home_page/:word_id/define/:def_id') do
+  @word = Word.find(params[:word_id].to_i)
+  @def = Define.find(params[:def_id].to_i)
+  new_def = params[:name]
+  type = params[:type]
+  @def.update(new_def, type)
+  @definitions = Define.all
+  erb(:view_word)
 end
