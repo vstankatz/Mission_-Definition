@@ -5,8 +5,8 @@ class Define
   @@rows = 0
 
   def initialize(attributes)
-    @type = attributes.fetch(:type)
-    @name = attributes.fetch(:name).downcase
+    @type = attributes.fetch(:type).capitalize
+    @name = attributes.fetch(:name).downcase.capitalize!
     @id = attributes.fetch(:id) || @@rows += 1
     @word_id = attributes.fetch(:word_id)
   end
@@ -35,6 +35,20 @@ class Define
     @type = input.fetch(:type)
     @name = input.fetch(:name)
     @@meaning_list[self.id] = Define.new({:type => @type, :name => @name, :id => self.id, :word_id => self.word_id})
+  end
+
+  def self.find_by_word(id)
+    definitions = []
+    @@meaning_list.values.each do |defs|
+      if defs.word_id == id
+        definitions.push(defs)
+      end
+    end
+    return definitions
+  end
+
+  def word
+    Word.find(self.word_id)
   end
 
   def delete

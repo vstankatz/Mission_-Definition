@@ -35,6 +35,10 @@ class Word
     @@word_list[self.id] = Word.new({:name => @name, :id => self.id})
   end
 
+  def definitions
+    Define.find_by_word(self.id)
+  end
+
   def delete
     @@word_list.delete(self.id)
   end
