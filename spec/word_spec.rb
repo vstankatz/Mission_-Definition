@@ -89,6 +89,25 @@ describe '#Word' do
     end
   end
 
+  describe('update') do
+    it('should update the word') do
+      word1 = Word.new({:name => "Heart", :id => nil})
+      word1.save
+      word1.update("Courage")
+      expect(word1.name).to(eq("Courage"))
+    end
+  end
+
+  describe('definitions') do
+    it('should tie a definition to the word') do
+      word1 = Word.new({:name => "Heart", :id => nil})
+      word1.save
+      def1 = Define.new({:type => "Noun", :name => "The human organ responsible for maintaining the cardiovascular system", :id => nil, :word_id => word1.id})
+      def1.save
+      expect(word1.definitions).to(eq([def1]))
+    end
+  end
+
   describe('search') do
     it('should search for words based on the name') do
     word1 = Word.new({:name => "Courage", :id => nil})
