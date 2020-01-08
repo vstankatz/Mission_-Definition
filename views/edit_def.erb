@@ -1,0 +1,21 @@
+<h2>Edit Definition for <%=@word.name%>:</h2>
+<form action="/home_page/<%=@word.id%>/define/<%=@def.id%>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="def">Corrent Spelling for Definition</label>
+    <input type="text" name="def">
+    <label for="type">Select a Word Type</label>
+    <select name="t">
+      <option value="noun">Noun</option>
+      <option value="verb">Verb</option>
+      <option value="adjective">Adjective</option>
+      <option value="adverb">Adverb</option>
+    </select>
+  </div>
+  <button type="submit">Add Definition</button>
+</form>
+<form class="" action="/home_page/<%=@word.id%>/define/<%=@def.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+<h5>Do You Wish to Delete the Definition?</h5>
+<button type="submit" name="button">Yes, Delete</button>
+</form>
