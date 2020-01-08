@@ -1,0 +1,15 @@
+<h2>Add a Definition:</h2>
+<form action="/home_page/<%=@word.id%>" method="post">
+  <div class="form-group">
+    <label for="def">Enter Definition</label>
+    <input type="text" name="def">
+    <label for="type">Select a Word Type</label>
+    <select name="t">
+      <option value="noun">Noun</option>
+      <option value="verb">Verb</option>
+      <option value="adjective">Adjective</option>
+      <option value="adverb">Adverb</option>
+    </select>
+  </div>
+  <button type="submit">Add Definition</button>
+</form>

@@ -1,9 +1,9 @@
 <h2><%= @word.name %></h2>
 
-<% if @definitions.any? %>
+<% if @word.definitions.any? %>
 <ul>
-  <% @definitions.sort_by(&:type).each do |definition| %>
-  <li><a href="/home_page/<%= definition.id %>"><%= definition.name %></a></li>
+  <% @definitions.each do |definition| %>
+  <ol><a href="/home_page/<%= definition.id %>"><%= definition.name %></a><i><b> <%= definition.type %></b></i> </ol>
   <% end %>
 </ul>
 <% else %>
