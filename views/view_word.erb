@@ -1,9 +1,10 @@
 <h2><%= @word.name %></h2>
 
 <% if @word.definitions.any? %>
+<h4>Definitions:</h4>
 <ul>
   <% @definitions.each do |definition| %>
-  <ol><a href="/home_page/<%= definition.id %>"><%= definition.name %></a><i><b> <%= definition.type %></b></i> </ol>
+  <ol><a href="/home_page/<%=@word.id %>/define/<%= definition.id %>"><%= definition.name %></a><i><b> <%= definition.type %></b></i> </ol>
   <% end %>
 </ul>
 <% else %>
@@ -13,5 +14,7 @@
 <a href="/home_page/<%= @word.id %>/edit">Edit Word</a>
 <br>
 <a href="/home_page/<%= @word.id %>/define">Add a Definition</a>
+<br>
+<a href="#"></a>
 <br>
 <a href="/home_page">Back to Home</a>

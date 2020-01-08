@@ -8,3 +8,9 @@
   </div>
   <button type="submit">Edit Word</button>
 </form>
+
+<form class="" action="/home_page/<%=@word.id%>" method="post">
+  <input type="hidden" name="_method" value="delete">
+<h5>Do You Wish to Delete the Word?</h5>
+<button type="submit" name="button">Yes, Delete</button>
+</form>

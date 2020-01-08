@@ -32,9 +32,10 @@ class Define
   end
 
   def update(input)
+
     @type = input.fetch(:type)
     @name = input.fetch(:name)
-    @@meaning_list[self.id] = Define.new({:type => @type, :name => @name, :id => self.id, :word_id => self.word_id})
+    @@meaning_list[self.id] = Define.new({:type => self.type, :name => self.name, :id => self.id, :word_id => self.word_id})
   end
 
   def self.find_by_word(id)

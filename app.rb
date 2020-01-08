@@ -61,6 +61,13 @@ patch('/home_page/:word_id') do
   erb(:view_word)
 end
 
+delete('/home_page/:word_id') do
+  @word = Word.find(params[:word_id].to_i)
+  @word.delete
+  @words = Word.all
+  erb(:home)
+end
+
 get('/home_page/:word_id/define') do
   @word = Word.find(params[:word_id].to_i)
   @definitions = Define.find(params[:def_id].to_i)
@@ -89,13 +96,31 @@ post('/home_page/:id_word') do
 erb(:view_word)
 end
 
+get('/home_page/:word_id/define/:def_id') do
+  @word = Word.find(params[:word_id].to_i)
+  @def = Define.find(params[:def_id].to_i)
+  erb(:view_definition)
+end
+
+get('/home_page/:word_id/define/:def_id/edit') do
+  @word = Word.find(params[:word_id].to_i)
+  @def = Define.find(params[:def_id].to_i)
+  erb(:edit_def)
+end
 
 patch('/home_page/:word_id/define/:def_id') do
   @word = Word.find(params[:word_id].to_i)
   @def = Define.find(params[:def_id].to_i)
-  new_def = params[:name]
-  type = params[:type]
-  @def.update(new_def, type)
+  new_def = params[:def]
+  type = params[:t]
+  @def.update({:type => type, :name => new_def})
   @definitions = Define.all
+  erb(:view_word)
+end
+
+delete('/home_page/:word_id/define/:def_id') do
+  @word = Word.find(params[:word_id].to_i)
+  @def = Define.find(params[:def_id].to_i)
+  @def.delete
   erb(:view_word)
 end
