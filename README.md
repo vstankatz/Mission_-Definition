@@ -22,7 +22,7 @@ _This program was designed to allow someone to type in words and create definiti
 
 ## Setup-Installation Requirements
 
-* _Go to INSERT HEROKU LINK!!!!_
+* _Go to https://protected-spire-87897.herokuapp.com/_
 * _Read the prompt printed on the first page and create words and definitions as you please_
 
 
